@@ -18,7 +18,7 @@
     Enkel ingelogde gebruikers zien deze tekst
 </div>
 <form method="post" th:action="@{/logout}" sec:authorize="isAuthenticated()">
-    <button><th:block sec:authentication="name"></th:block> uitloggen</button>
+    <button><th:block sec:authentication="name"></th:block> Uitloggen</button>
 </form>
 </body>
 </html>
