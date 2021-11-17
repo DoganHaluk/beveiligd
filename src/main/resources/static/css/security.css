@@ -6,3 +6,7 @@ input, button {
     display: block;
     margin-top: 0.4em;
 }
+
+a:link{
+    text-decoration: none;
+}
