@@ -6,23 +6,22 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import javax.sql.DataSource;
+
 @EnableWebSecurity
 class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String MANAGER = "manager";
     private static final String HELPDESKMEDEWERKER = "helpdeskmedewerker";
     private static final String MAGAZIJNIER = "magazijnier";
+    private final DataSource dataSource;
+
+    SecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("joe")
-                .password("{noop}theboss")
-                .authorities(MANAGER)
-                .and()
-                .withUser("averell")
-                .password("{noop}hungry")
-                .authorities(HELPDESKMEDEWERKER, MAGAZIJNIER);
-    }
+        auth.jdbcAuthentication().dataSource(dataSource);    }
 
     @Override
     public void configure(WebSecurity web) {
