@@ -21,7 +21,10 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource);    }
+        auth.jdbcAuthentication().dataSource(dataSource)
+                .usersByUsernameQuery("select naam as username, paswoord as password, actief as enabled from gebruikers where naam = ?")
+                .authoritiesByUsernameQuery("select gebruikers.naam as username, rollen.naam as authorities from gebruikers inner join gebruikersrollen on gebruikers.id = gebruikersrollen.gebruikerId inner join rollen on rollen.id = gebruikersrollen.rolId where gebruikers.naam = ?");
+    }
 
     @Override
     public void configure(WebSecurity web) {
