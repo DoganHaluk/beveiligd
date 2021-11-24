@@ -40,6 +40,8 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout(logout -> logout.logoutSuccessUrl("/"));
         http.authorizeRequests(requests -> requests
                 .mvcMatchers("/", "/login").permitAll()
-                .mvcMatchers("/**").authenticated());
+                .mvcMatchers("/werknemers/**").hasAnyAuthority("magazijnier", "helpdeskmedewerker", "manager")
+                .mvcMatchers("/**").hasAuthority("manager")
+        );
     }
 }
