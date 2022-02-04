@@ -6,7 +6,9 @@
 </head>
 <body>
 <h1>Welkom</h1>
-<a th:href="@{/login}" sec:authorize="isAnonymous()"><button>Inloggen</button></a>
+<a th:href="@{/login}" sec:authorize="isAnonymous()">
+    <button>Inloggen</button>
+</a>
 <ul>
     <li><a th:href="@{/offertes}">Offertes</a></li>
     <li><a th:href="@{/werknemers}">Werknemers</a></li>
@@ -18,7 +20,9 @@
     Enkel ingelogde gebruikers zien deze tekst
 </div>
 <form method="post" th:action="@{/logout}" sec:authorize="isAuthenticated()">
-    <button><th:block sec:authentication="name"></th:block> Uitloggen</button>
+    <button><th:block sec:authentication="name"></th:block>
+        Uitloggen
+    </button>
 </form>
 </body>
 </html>
