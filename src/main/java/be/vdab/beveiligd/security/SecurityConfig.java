@@ -10,9 +10,6 @@ import javax.sql.DataSource;
 
 @EnableWebSecurity
 class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final String MANAGER = "manager";
-    private static final String HELPDESKMEDEWERKER = "helpdeskmedewerker";
-    private static final String MAGAZIJNIER = "magazijnier";
     private final DataSource dataSource;
 
     SecurityConfig(DataSource dataSource) {
